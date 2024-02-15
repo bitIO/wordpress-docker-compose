@@ -6,6 +6,7 @@ This document contains a list of common issues and their solutions.
 
 - [phpmyadmin] add a new wordpress admin user
 - [wordpress] Deprecated: Unparenthesized `a ? b : c ? d : e` is deprecated
+- [wordpress] cannot access /wp-admin
 
 ### [phpmyadmin] add a new wordpress admin user
 
@@ -30,3 +31,13 @@ if ( isset( $s['HTTP_X_FORWARDED_HOST'] ) ) {
 ```
 
 <https://stackoverflow.com/questions/63419004/deprecated-unparenthesized-a-b-c-d-e-is-deprecated>
+
+### [wordpress] cannot access /wp-admin
+
+Follow instructions in the link below:
+
+<https://www.hostinger.es/tutoriales/no-puedo-acceder-a-wordpress>
+
+Step 3 is the one that worked for me.
+
+```
