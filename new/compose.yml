@@ -1,0 +1,57 @@
+services:
+  database_new:
+    # We use a mariadb image which supports both amd64 & arm64 architecture
+    image: mariadb:10.6.4-focal
+    # If you really want to use MySQL, uncomment the following line
+    #image: mysql:8.0.27
+    command: '--default-authentication-plugin=mysql_native_password'
+    volumes:
+      - db_data_new:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=somewordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
+    expose:
+      - 3306
+      - 33060
+
+  wordpress_new:
+    image: wordpress:latest
+    ports:
+      - 80:80
+    restart: always
+    environment:
+      - WORDPRESS_DB_HOST=database_new
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=wordpress
+      - WORDPRESS_DB_NAME=wordpress
+    volumes:
+      # Use the following line if you want to use the default wp-content directory
+      - ./wp-content:/var/www/html/wp-content
+      # Use the following line if you want to use a custom wp-content directory
+      # - ./web-chapineria/wp-content:/var/www/html/wp-content
+      #  Uncomment the following lines if you want to use custom wp-settings.php and wp-config.php
+      # - type: bind
+      #   source: ./wp-settings.php
+      #   target: /var/www/html/wp-settings.php
+      #   read_only: true
+      # - type: bind
+      #   source: ./wp-config.php
+      #   target: /var/www/html/wp-config.php
+      #   read_only: true
+
+  phpmyadmin_new:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=database_new
+      - PMA_USER=wordpress
+      - PMA_PASSWORD=wordpress
+
+volumes:
+  db_data_new:

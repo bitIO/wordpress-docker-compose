@@ -39,5 +39,3 @@ Follow instructions in the link below:
 <https://www.hostinger.es/tutoriales/no-puedo-acceder-a-wordpress>
 
 Step 3 is the one that worked for me.
-
-```
