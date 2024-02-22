@@ -26,7 +26,7 @@ services:
       - WORDPRESS_DB_HOST=db_old
       - WORDPRESS_DB_USER=wordpress
       - WORDPRESS_DB_PASSWORD=wordpress
-      - WORDPRESS_DB_NAME=wordpress_chapineria
+      - WORDPRESS_DB_NAME=wordpress
     volumes:
       # Use the following line if you want to use the default wp-content directory
       # - ./wp-content:/var/www/html/wp-content
